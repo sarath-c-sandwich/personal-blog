@@ -1,0 +1,14 @@
+= simple_form_for @post, defaults: { input_html: { class: 'form-control' } } do |f|
+  - if @post.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field.form-group
+    = f.input :title
+    = f.input :body, :value => "Default value", :id => "sometext",:input_html => { :rows => 10 }, required: true
+    = f.input :tag
+  .actions.form-group
+    = f.button :submit, class:"btn btn-primary"
